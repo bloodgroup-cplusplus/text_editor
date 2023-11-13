@@ -15,7 +15,7 @@ import {zodResolver} from "@hookform/resolvers/zod"
 import * as z from "zod"
 import { language_map } from "@/lib/keyboard"
 import { useState } from "react"
-import {Tiptap} from "../components/Tiptap"
+import Tiptap from "../components/Tiptap"
 
 const formSchema = z.object ({
   title:z.string().min(5,{message:'Hey the title is not long enough'})
