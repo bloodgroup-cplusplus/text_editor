@@ -13,6 +13,8 @@ import {Button} from "@/components/ui/button"
 import {useForm} from "react-hook-form"
 import {zodResolver} from "@hookform/resolvers/zod"
 import * as z from "zod"
+import { language_map } from "@/lib/keyboard"
+import { useState } from "react"
 
 const formSchema = z.object ({
   title:z.string().min(5,{message:'Hey the title is not long enough'})
@@ -24,6 +26,7 @@ const formSchema = z.object ({
   .trim(),
 })
 export default function Home() {
+  const[first_message,setFirstMessage] = useState("")
     const form = useForm<z.infer<typeof formSchema>>({
       resolver:zodResolver(formSchema),
       mode:'onChange',
@@ -38,6 +41,16 @@ export default function Home() {
       // do something with the form values
       // this iwll be type-safe and validated
     }
+    const findMatch = (input_text:string)=>{
+      const pattern = new RegExp(
+        Object.keys(language_map).sort((a,b)=>b.length-a.length).join("|"),"g",
+      )
+      const convertedText=input_text.replace(
+        pattern,
+        (match) => language_map[match],
+      )
+      return convertedText
+    }
     return (
       <main className="p-24">
         <Form {...form}>
@@ -49,7 +62,7 @@ export default function Home() {
                 <FormItem>
                   <FormLabel>Title</FormLabel>
                   <FormControl>
-                    <Input placeholder="Main title for your blog" {...field}/>
+                    <Input placeholder="Main title for your blog" {...field} onChange={(e)=>setFirstMessage(e.target.value)} value={findMatch(first_message)}/>
                   </FormControl>
                   <FormMessage/>
                 </FormItem>
