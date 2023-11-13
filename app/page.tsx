@@ -41,7 +41,7 @@ export default function Home() {
     return (
       <main className="p-24">
         <Form {...form}>
-          <form>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
             <FormField
               control={form.control}
               name="title"
