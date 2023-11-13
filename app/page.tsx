@@ -19,7 +19,7 @@ const formSchema = z.object ({
   .trim(),
 })
 export default function Home() {
-    const form = useForm({
+    const form = useForm<z.infer<typeof formSchema>>({
       mode:'onChange',
       defaultValues:{
         title: '',
@@ -29,7 +29,24 @@ export default function Home() {
       },
     })
     return (
-      <main className=""></main>
+      <main className="p-24">
+        <Form {...form}>
+          <form>
+            <FormField
+              control={form.control}
+              name="title"
+              render={({field})=>(
+                <FormItem>
+                  <FormLabel>Title</FormLabel>
+                  <FormControl>
+                  </FormControl>
+                  <FormMessage/>
+                </FormItem>
+              )}
+
+          </form>
+        </Form>
+      </main>
 
     )
 
