@@ -63,6 +63,14 @@ export function Toolbar({editor}:Props){
             <List className="h-4 w-4"/>
         </Toggle>
 
+        <Toggle 
+            size="sm"
+            pressed={editor.isActive("orderedList")}
+            onPressedChange={()=> editor.chain().focus().toggleOrderedList().run()}
+            >
+                <ListOrdered className="h-4 w-4"/>
+            </Toggle>
+
         </div>
     )
 }
