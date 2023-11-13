@@ -23,7 +23,7 @@ const formSchema = z.object ({
   price:z.number().min(5,{message:"Hey the title is not long enough"}),
   description:z.string()
   .min(5,{message:"Hey the title is not long enough"})
-  .max(100,{message:"Its too long"})
+  .max(1000,{message:"Its too long"})
   .trim(),
 })
 export default function Home() {
