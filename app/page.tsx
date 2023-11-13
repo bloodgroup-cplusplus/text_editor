@@ -7,9 +7,21 @@ import {
   FormMessage
 } from "@/components/ui/form"
 import {useForm} from "react-hook-form"
+import * as z from "zod"
 export default function Home() {
-  return <main className="">
+    const form = useForm({
+      mode:'onChange',
+      defaultValues:{
+        title: '',
+        price:29.99,
+        description:"",
 
-  </main>
+      },
+    })
+    return (
+      <main className=""></main>
+
+    )
+
 }
   
