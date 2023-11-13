@@ -35,6 +35,17 @@ export function Toolbar({editor}:Props){
                 size="sm"
                 pressed={editor.isActive("bold")}
                 onPressedChange={()=>editor.chain().focus().toggleBold()}
+                >
+                    <Bold className="h-4 w-4"/> 
+                </Toggle>
+
+            <Toggle
+                size="sm"
+                pressed={editor.isActive("italic")}
+                onPressedChange={()=>editor.chain().focus().toggleItalic()}
+            >
+                <Italic className="h-4 w-4"/>
+            </Toggle>
         </div>
     )
 }
