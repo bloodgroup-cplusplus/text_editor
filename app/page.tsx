@@ -15,6 +15,7 @@ import {zodResolver} from "@hookform/resolvers/zod"
 import * as z from "zod"
 import { language_map } from "@/lib/keyboard"
 import { useState } from "react"
+import {Tiptap} from "../components/Tiptap"
 
 const formSchema = z.object ({
   title:z.string().min(5,{message:'Hey the title is not long enough'})
@@ -68,6 +69,19 @@ export default function Home() {
                 </FormItem>
               )}
               />
+              <FormField
+                control={form.control}
+                name="description"
+                render={({field})=>(
+                  <FormItem>
+                    <FormLabel>Description</FormLabel>
+                    <FormControl>
+                      <Tiptap description={field.name} onChange={field.onChange}/>
+                    </FormControl>
+                    <FormMessage/>
+                  </FormItem>
+                )}
+                />
               <Button className="my-4" type="submit">
                 Submit
               </Button>
