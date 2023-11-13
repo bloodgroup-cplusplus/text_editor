@@ -9,7 +9,9 @@ import {
 
 } from "@/components/ui/form"
 import {Input} from "@/components/ui/input"
+import {Button} from "@/components/ui/button"
 import {useForm} from "react-hook-form"
+import {zodResolver} from "@hookform/resolvers/zod"
 import * as z from "zod"
 
 const formSchema = z.object ({
@@ -23,6 +25,7 @@ const formSchema = z.object ({
 })
 export default function Home() {
     const form = useForm<z.infer<typeof formSchema>>({
+      resolver:zodResolver(formSchema),
       mode:'onChange',
       defaultValues:{
         title: '',
@@ -31,6 +34,10 @@ export default function Home() {
 
       },
     })
+    function onSubmit(values:z.infer<typeof formSchema>){
+      // do something with the form values
+      // this iwll be type-safe and validated
+    }
     return (
       <main className="p-24">
         <Form {...form}>
@@ -42,12 +49,15 @@ export default function Home() {
                 <FormItem>
                   <FormLabel>Title</FormLabel>
                   <FormControl>
-                    <Input placeholder="Main title for your blog"/>
+                    <Input placeholder="Main title for your blog" {...field}/>
                   </FormControl>
                   <FormMessage/>
                 </FormItem>
               )}
               />
+              <Button className="my-4" type="submit">
+                Submit
+              </Button>
           </form>
         </Form>
       </main>
