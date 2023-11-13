@@ -1,11 +1,14 @@
+'use client'
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
+
 } from "@/components/ui/form"
+import {Input} from "@/components/ui/input"
 import {useForm} from "react-hook-form"
 import * as z from "zod"
 
@@ -39,11 +42,12 @@ export default function Home() {
                 <FormItem>
                   <FormLabel>Title</FormLabel>
                   <FormControl>
+                    <Input placeholder="Main title for your blog"/>
                   </FormControl>
                   <FormMessage/>
                 </FormItem>
               )}
-
+              />
           </form>
         </Form>
       </main>
